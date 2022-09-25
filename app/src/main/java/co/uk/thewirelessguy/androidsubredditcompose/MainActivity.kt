@@ -1,5 +1,6 @@
 package co.uk.thewirelessguy.androidsubredditcompose
 
+import MainScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,7 +26,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    PostsListScreen()
+                    //PostsListScreen()
+                    MainScreen()
                 }
             }
         }
