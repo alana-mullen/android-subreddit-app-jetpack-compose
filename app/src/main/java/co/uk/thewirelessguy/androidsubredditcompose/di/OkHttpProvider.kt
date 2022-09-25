@@ -30,9 +30,8 @@ class OkHttpProvider {
             client.addNetworkInterceptor(NetLoggingInterceptor())
         }
 
-        client.apply {
-            addNetworkInterceptor(CacheInterceptor())
-        }
+        client.addNetworkInterceptor(CacheInterceptor())
+
         return client.build()
     }
 }
