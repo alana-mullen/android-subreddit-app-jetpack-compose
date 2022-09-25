@@ -9,13 +9,15 @@ class PostsItemProvider : PreviewParameterProvider<PostsSummary> {
             id = "1",
             title = "Some Post",
             author = "Some Name",
-            image = ""
+            image = "",
+            permalink = "some-link"
         ),
         PostsSummary(
             id = "2",
             title = "Some Other Post",
             author = "Another Name",
-            image = ""
+            image = "",
+            permalink = "some-link"
         )
     )
 }

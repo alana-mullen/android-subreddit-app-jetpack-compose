@@ -2,6 +2,8 @@ package co.uk.thewirelessguy.androidsubredditcompose.ui
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,12 +22,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import co.uk.thewirelessguy.androidsubredditcompose.R
+import co.uk.thewirelessguy.androidsubredditcompose.extension.openUrl
 import co.uk.thewirelessguy.androidsubredditcompose.model.app.PostsSummary
 import co.uk.thewirelessguy.androidsubredditcompose.ui.theme.listItemTitleTextColor
 import co.uk.thewirelessguy.androidsubredditcompose.model.State
@@ -85,38 +90,45 @@ fun PostsList(items: MutableList<PostsSummary>) {
 @Composable
 fun PostsItem(item: PostsSummary) {
     val context = LocalContext.current
+    val url = stringResource(R.string.permalink, item.permalink)
 
-    Row(
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+    Box(
+        modifier = Modifier.clickable {
+            context.openUrl(url)
+        }
     ) {
-        CustomImage(
-            modifier = Modifier
-                .height(100.dp)
-                .width(100.dp),
-            context = context,
-            image = item.image
-        )
-
-        Column(
-            modifier = Modifier.padding(start = 16.dp)
+        Row(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = item.title,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 3,
-                color = listItemTitleTextColor,
-                style = MaterialTheme.typography.h6
+            CustomImage(
+                modifier = Modifier
+                    .height(100.dp)
+                    .width(100.dp),
+                context = context,
+                image = item.image
             )
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = item.author,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
-                color = listItemSubTitleTextColor,
-                style = MaterialTheme.typography.h6,
-                fontStyle = FontStyle.Italic
-            )
+
+            Column(
+                modifier = Modifier.padding(start = 16.dp)
+            ) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = item.title,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 3,
+                    color = listItemTitleTextColor,
+                    style = MaterialTheme.typography.h6
+                )
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = item.author,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    color = listItemSubTitleTextColor,
+                    style = MaterialTheme.typography.h6,
+                    fontStyle = FontStyle.Italic
+                )
+            }
         }
     }
 }

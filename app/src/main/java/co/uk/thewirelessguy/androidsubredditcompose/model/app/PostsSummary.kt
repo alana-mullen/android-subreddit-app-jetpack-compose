@@ -7,20 +7,18 @@ data class PostsSummary(
     val title: String,
     val author: String,
     val image: String,
+    val permalink: String
 ) {
     companion object {
-        fun from(post: SubredditResponse.Data.Children): PostsSummary? {
+        fun from(post: SubredditResponse.Datum.Children): PostsSummary? {
             val data = post.data
-            if (data == null || data.id.isNullOrEmpty() || data.name.isNullOrEmpty()) return null
-            val id = data.id
-            val postTitle = data.title.orEmpty()
-            val postAuthor = data.author.orEmpty()
-            val thumbnail = data.thumbnail.orEmpty()
+            if (data == null || data.id.isNullOrEmpty() || data.title.isNullOrEmpty()) return null
             return PostsSummary(
-                id = id,
-                title = postTitle,
-                author = postAuthor,
-                image = thumbnail
+                id = data.id,
+                title = data.title,
+                author = data.author.orEmpty(),
+                image = data.thumbnail.orEmpty(),
+                permalink = data.permalink.orEmpty()
             )
         }
 

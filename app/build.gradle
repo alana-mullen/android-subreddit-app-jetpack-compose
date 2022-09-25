@@ -69,6 +69,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     implementation "androidx.navigation:navigation-compose:2.5.2"
+    implementation 'androidx.browser:browser:1.4.0'
 
     // https://google.github.io/accompanist/
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
