@@ -1,6 +1,7 @@
 package co.uk.thewirelessguy.androidsubredditcompose.di
 
 import co.uk.thewirelessguy.androidsubredditcompose.BuildConfig
+import co.uk.thewirelessguy.androidsubredditcompose.data.CacheInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +31,7 @@ class OkHttpProvider {
         }
 
         client.apply {
-            addNetworkInterceptor(NetLoggingInterceptor())
+            addNetworkInterceptor(CacheInterceptor())
         }
         return client.build()
     }
