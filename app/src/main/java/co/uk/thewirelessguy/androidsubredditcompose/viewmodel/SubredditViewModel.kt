@@ -8,7 +8,6 @@ import co.uk.thewirelessguy.androidsubredditcompose.di.DispatcherModule
 import co.uk.thewirelessguy.androidsubredditcompose.model.State
 import co.uk.thewirelessguy.androidsubredditcompose.model.app.PostsSummary
 import co.uk.thewirelessguy.androidsubredditcompose.repository.RedditRepository
-import co.uk.thewirelessguy.androidsubredditcompose.navigation.AppNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,9 +21,8 @@ import javax.inject.Inject
 class SubredditViewModel @Inject constructor(
     private val repository: RedditRepository,
     private val savedStateHandle: SavedStateHandle,
-    private val navigator: AppNavigator,
     @DispatcherModule.IODispatcher private val dispatcher: CoroutineDispatcher
-) : ViewModel(), AppNavigator by navigator {
+) : ViewModel() {
 
     private val _postsListUIState = MutableStateFlow<State<List<PostsSummary>>>(State.empty())
     val postsListUIState = _postsListUIState.asStateFlow()
